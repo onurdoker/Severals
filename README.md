@@ -1,84 +1,159 @@
-# Vanilla App Template
+# goit-js-hw-09
 
-Bu proje Vite kullanılarak oluşturulmuştur. Ek özelliklerin tanınması ve özelleştirilmesi için [belgelere bakın](https://vitejs.dev/).
+A small, multi‑page vanilla JavaScript project built with Vite. It includes:
 
-## Şablon kullanarak bir depo oluşturma
+- An image Gallery page using SimpleLightbox (01-gallery.html)
+- A Feedback Form page that persists state to localStorage (02-form.html)
+- An Index page that links to the above demos (index.html)
 
-Projeniz için bir depo oluşturmak üzere bu GoIT deposunu şablon olarak kullanın. Bunu yapmak için, `«Use this template»` düğmesine tıklayın ve resimde gösterildiği gibi `«Create a new repository»` seçeneğini seçin.
-
-![Creating repo from a template step 1](./assets/template-step-1.png)
-
-Bir sonraki adımda yeni bir depo oluşturma sayfası açılır. Ad alanını doldurun, deponun herkese açık olduğundan emin olun ve ardından `«Create repository from template»` düğmesine tıklayın.
-
-![Creating repo from a template step 2](./assets/template-step-2.png)
-
-Depo oluşturulduktan sonra, oluşturulan deponun ayarlarına, resimde gösterildiği gibi `Settings` > `Actions` > `General` sekmesine gitmeniz gerekir.
-
-![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
-
-Sayfanın en sonuna gidin, `«Workflow permissions»` bölümünde `«Read and write permissions»` seçeneğini seçin ve onay kutusunu işaretleyin. Bu, proje dağıtımı sürecini otomatikleştirmek için gereklidir.
-
-![Settings GitHub Actions permissions step 2](./assets/gh-actions-perm-2.png)
-
-Artık depo şablonu dosyası ve klasör yapısına sahip kişisel bir proje deponuz var. Daha sonra diğer kişisel depolarla yaptığınız gibi onunla çalışın.
-Bilgisayarınıza klonlayın, kod yazın, taahhütlerde bulunun ve bunları GitHub'a gönderin.
+This repository is based on a GoIT vanilla app template, adapted for Homework 9.
 
 
-## İş için hazırlanma
+## Stack
 
-1. Bilgisayarınızda Node.js'nin LTS sürümünün yüklü olduğundan emin olun. Gerekirse [Download and install](https://nodejs.org/en/).
-2. Projenin temel bağımlılıklarını terminalde `npm install` komutu ile yükleyin.
-3. Terminalde `npm run dev` komutunu çalıştırarak geliştirme modunu başlatın.
-4. Tarayıcınızda [http://localhost:5173](http://localhost:5173) adresine gidin. Proje dosyalarındaki değişiklikleri kaydettikten sonra bu sayfa otomatik olarak yeniden yüklenecektir.
-
-## Dosyalar ve klasörler
-
-- Sayfa bileşeni biçimlendirme dosyaları `rc/partials` klasöründe bulunmalı ve `index.html` dosyasına aktarılmalıdır. Örneğin, başlık biçimlendirme dosyası `header.html` `partials` klasöründe oluşturulur ve `index.html` dosyasına aktarılır.
-- Stil dosyaları `rc/css` klasöründe bulunmalı ve sayfaların HTML dosyalarına aktarılmalıdır. Örneğin, `index.html` için stil dosyası `index.css` olarak adlandırılır.
-- Görüntüleri `src/img` klasörüne eklersiniz. Oluşturucu bunları optimize eder, ancak yalnızca projenin üretim sürümü dağıtıldığında. Tüm bunlar bulutta gerçekleşir, böylece bilgisayarınıza yük olmaz, çünkü zayıf makinelerde uzun zaman alabilir.
+- Language: JavaScript (ES Modules), HTML5, CSS3
+- Build tool: Vite 6
+- PostCSS: postcss, postcss-sort-media-queries
+- Vite plugins: vite-plugin-html-inject, vite-plugin-full-reload
+- UI library used in gallery: simplelightbox
+- Package manager: npm (package-lock.json present)
 
 
-## Dağıtım
+## Requirements
 
-Projenin üretim sürümü, `main` dalı her güncellendiğinde otomatik olarak oluşturulacak ve `gh-pages` dalında GitHub Pages'a dağıtılacaktır. Örneğin, doğrudan bir push veya kabul edilen bir pool-request sonrasında. Bunu yapmak için `build` komutu için `package.json` dosyasındaki `--base=/<REPO>/` bayrağının değerini değiştirin, `<REPO>` yerine deponuzun adını yazın ve değişiklikleri GitHub'a gönderin.
+- Node.js LTS installed (recommended). Vite 6 typically requires Node 18+. TODO: verify the exact supported Node version for your environment.
+- npm (bundled with Node.js)
 
-```json
-"build": "vite build --base=/<REPO>/",
+
+## Getting started
+
+1. Install dependencies
+   - npm install
+2. Start the dev server
+   - npm run dev
+   - Open http://localhost:5173 (default Vite port). The page reloads automatically on changes.
+3. Build for production
+   - npm run build
+4. Preview the production build locally
+   - npm run preview
+
+
+## Scripts
+
+- dev — start Vite dev server
+- build — build production assets with a base path suitable for GitHub Pages
+- preview — serve the built assets locally for preview/testing
+
+From package.json:
+
+```
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --base=/goit-js-hw-09/",
+    "preview": "vite preview"
+  }
+}
 ```
 
-Ardından, GitHub depo ayarlarına gidin (`Settings` > `Pages`) ve otomatik olarak yapılmadıysa, dosyaların üretim sürümünün `gh-pages` dalının `/root` klasöründen dağıtımını ayarlayın.
 
-![GitHub Pages settings](./assets/repo-settings.png)
+## Entry points and app pages
 
-### Dağıtımcı durumu
+Vite is configured to treat every HTML file in src/ as an entry (see vite.config.js):
 
-Son işlemin dağıtım durumu, tanımlayıcısının yanındaki simge ile gösterilir.
+- src/index.html — landing page linking to examples
+- src/01-gallery.html — image gallery using SimpleLightbox
+  - JS: src/js/01-gallery.js
+  - CSS: src/css/gallery.css
+- src/02-form.html — feedback form with localStorage persistence
+  - JS: src/js/02-form.js
+  - CSS: src/css/form.css
 
-- **Sarı renk** — proje inşa ediliyor ve dağıtılıyor.
-- **Yeşil renk** — dağıtım başarıyla tamamlandı.
-- **Kırmızı renk** — bağlama, oluşturma veya dağıtma sırasında bir hata oluştu.
+Shared assets/styles live under:
 
-Durum hakkında daha ayrıntılı bilgi, simgeye tıklayarak ve açılan pencerede `Details` bağlantısına tıklayarak görüntülenebilir.
-
-
-![Deployment status](./assets/deploy-status.png)
-
-### Canlı sayfa
-
-Bir süre sonra, genellikle birkaç dakika, canlı sayfa depo ayarlarındaki `Settings` > `Pages` sekmesinde belirtilen adresten görüntülenebilir.
-Örneğin, bu depo için canlı sürümün bağlantısı şöyledir
-[https://goitacademy.github.io/vanilla-app-template/](https://goitacademy.github.io/vanilla-app-template/).
+- src/css — page styles (e.g., index.css)
+- src/img — static images (if any)
+- src/js — page scripts
+- src/partials — HTML partials (if used)
 
 
-Boş bir sayfa açılırsa, `Console` sekmesinde projenin CSS ve JS dosyalarının yanlış yollarıyla ilgili herhangi bir hata olmadığından emin olun (**404**). Büyük olasılıkla `package.json` dosyasında `build` komutu için `--base` bayrağının yanlış bir değeri vardır.
+## Project structure (abridged)
 
-## Nasıl çalışır
+- README.md
+- package.json / package-lock.json
+- vite.config.js
+- src/
+  - index.html
+  - 01-gallery.html
+  - 02-form.html
+  - css/
+    - index.css
+    - gallery.css
+    - form.css
+  - js/
+    - 01-gallery.js
+    - 02-form.js
+  - img/
+  - partials/
+- assets/ (documentation images from the original template)
 
-![How it works](./assets/how-it-works.png)
 
-1. GitHub deposuna yapılan her `main` gönderim sonrasında `.github/workflows/deploy.yml` 
-dosyasında özel bir komut dosyası (GitHub Action) çalıştırılır.
-2. Depo dosyalarının tümü sunucuya kopyalanır, burada proje başlatılır ve dağıtımdan önce 
-kod kalitesi kontrolü ve derleme yapılır.
-3. Eğer tüm adımlar başarılı bir şekilde tamamlanırsa, proje dosyalarının üretime hazır sürümü `gh-pages` 
-dalına gönderilir. Aksi takdirde, komut dosyası çalıştırma günlüğünde sorunun ne olduğu belirtilir.
+## Configuration notes
+
+- Vite root is set to src/ and output to dist/ (see vite.config.js)
+- Multiple HTML entries are auto‑discovered via glob (./src/*.html)
+- The build output base is set to /goit-js-hw-09/ which matches a GitHub Pages deployment under the repository name
+
+Relevant vite.config.js bits:
+
+```
+export default defineConfig(({ command }) => ({
+  root: 'src',
+  build: {
+    rollupOptions: {
+      input: glob.sync('./src/*.html')
+    },
+    outDir: '../dist'
+  },
+  plugins: [injectHTML(), FullReload(['./src/**/**.html'])]
+}));
+```
+
+
+## Environment variables
+
+- None are required for local development or build at this time.
+- TODO: If you introduce environment‑specific settings, prefer using Vite env files (.env, .env.development, .env.production) with prefixes like VITE_.
+
+
+## Testing
+
+- There are currently no automated tests in this repository.
+- TODO: Add tests (e.g., using Vitest + @testing-library) and document how to run them.
+
+
+## Deployment (GitHub Pages)
+
+This project is preconfigured for GitHub Pages via the build base path.
+
+1. Ensure the build script in package.json uses the repo name as base:
+   - "build": "vite build --base=/goit-js-hw-09/"
+2. Build and push the production files to a gh-pages branch using your preferred method, or set up a GitHub Action.
+   - Template repos often use a workflow at .github/workflows/deploy.yml. If it doesn’t exist here, you can add one. TODO: Add/verify CI workflow for automated deploys.
+3. In the GitHub repo, go to Settings → Pages and set the source to the gh-pages branch (root folder) if using that flow.
+4. Your site will be available at: https://<your-username>.github.io/goit-js-hw-09/
+
+Troubleshooting a blank page on GitHub Pages:
+
+- Check the browser console for 404 errors on JS/CSS. This usually means the base path is incorrect. The base must match "/<REPO_NAME>/".
+
+
+## License
+
+- License: ISC (as declared in package.json)
+- TODO: Add a LICENSE file to the repository root for clarity.
+
+
+## Acknowledgements
+
+This project was scaffolded from the GoIT vanilla app template and adapted for Homework 9. Thanks to the authors and maintainers of Vite and the listed plugins/libraries.
